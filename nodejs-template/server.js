@@ -2,6 +2,7 @@ const http = require('http');
 const fs = require('fs');
 const process = require('process');
 const readline = require('readline');
+const url = require('url');
 
 const hostname = '127.0.0.1';
 const port = 3000;
@@ -15,14 +16,14 @@ const server = http.createServer((req, res) => {
   const { method, url } = req;
   console.log(method, url);
 
-  switch (url) {
-    case '/':
-      return index(req, res); 
-    case '/second':
+  switch (true) { 
+    case url.startsWith('/second'):
       return second(req, res); 
-    case '/third':
+    case url.startsWith('/third'):
       return third(req, res); 
     
+    case url.startsWith('/'):
+      return index(req, res);
     default:
       return index(req, res); 
   }
@@ -40,7 +41,6 @@ const index = (req, res) => {
     return res.end();
   });
 };
-
 
 const second = async (req, res) => {
   const rl = readline.createInterface({
@@ -68,9 +68,11 @@ const second = async (req, res) => {
 
 };
 
-
-
 const third = async (req, res) => {
+  const q = url.parse(req.url, true);
+  const params = q.query;
+  console.log(params);
+  res.end("third");
 
 };
 
