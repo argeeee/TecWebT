@@ -1,0 +1,4 @@
+bin/
+build/
+web/WEB-INF/lib/**
+lib/**
