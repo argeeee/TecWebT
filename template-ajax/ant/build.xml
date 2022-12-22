@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<project name="05_TecWeb_solved" basedir=".." default="02.print.properties">
+<project name="template-ajax" basedir=".." default="02.print.properties">
 
 	<!-- ================ -->
 	<!-- Properties setup -->
